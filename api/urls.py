@@ -5,7 +5,18 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from .views import  *
 
-
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your API Title",  # API nomi
+        default_version='v1',   # API versiyasi
+        description="API for managing teachers, courses, news, and feedback. Provides authentication (login/register) functionalities.",  # API tavsifi
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="your_email@example.com"),  # Kontakt ma'lumotlari
+        license=openapi.License(name="BSD License"),  # Litsenziya
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),  # API uchun umumiy ruxsat
+)
 
 urlpatterns = [
     # Banner URLs
@@ -51,6 +62,7 @@ urlpatterns = [
     path('login/', log_in, name='login'),
     path('logout/', log_out, name='logout'),
     path('register/', register, name='register'),
-    
+    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), 
   
 ]
