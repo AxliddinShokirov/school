@@ -5,18 +5,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from .views import  *
 
-# Swagger Schema View
-schema_view = get_schema_view(
-    openapi.Info(
-        title="My API",
-        default_version='v1',
-        description="Test description",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@myapi.local"),
-        license=openapi.License(name="BSD License"),
-    ),
-    public=True,
-)
+
 
 urlpatterns = [
     # Banner URLs
@@ -50,7 +39,7 @@ urlpatterns = [
     # Contact URLs
     path('contacts/', ContactListCreateView.as_view(), name='contact-list-create'),
     path('contacts/<int:pk>/', ContactRetrieveUpdateDestroyView.as_view(), name='contact-detail'),
-    path('courses/<int:pk>/', CourseDetailView.as_view(), name='course-detail'),
+
     path('modules/', ModuleListCreateView.as_view(), name='module-list-create'),
     path('modules/<int:pk>/', ModuleRetrieveUpdateDeleteView.as_view(), name='module-detail'),
 
@@ -63,7 +52,5 @@ urlpatterns = [
     path('logout/', log_out, name='logout'),
     path('register/', register, name='register'),
     
-    # Swagger URLs
-    path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+  
 ]
