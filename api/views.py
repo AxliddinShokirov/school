@@ -19,7 +19,7 @@ from main.models import *
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.filters import SearchFilter
 
-class BannerListCreateView( generics.CreateAPIView):
+class BannerListCreateView( generics.ListCreateAPIView):
     queryset = Banner.objects.all()
     serializer_class = BannerSerializer
 
@@ -27,8 +27,8 @@ class BannerRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Banner.objects.all()
     serializer_class = BannerSerializer
 
-class CourseTypeListCreateView(generics.CreateAPIView):
-    queryset = CourseType.objects.all() 
+class CourseTypeListCreateView(generics.ListCreateAPIView):
+    queryset = CourseType.objects.all()
     serializer_class = CourseTypeSerializer
 
 class CourseTypeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
@@ -36,7 +36,7 @@ class CourseTypeRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView)
     serializer_class = CourseTypeSerializer
 
 
-class CourseListCreateView(generics.CreateAPIView):
+class CourseListCreateView(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     filter_backends = [SearchFilter]
@@ -49,7 +49,7 @@ class CourseRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     search_fields = ['title', 'description']
 
 
-class NewsListCreateView(generics.CreateAPIView):
+class NewsListCreateView(generics.ListCreateAPIView):
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     filter_backends = [SearchFilter]
@@ -63,7 +63,7 @@ class NewsRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     search_fields = ['title', 'content']
 
 
-class  SubjectListCreateView(generics.CreateAPIView):
+class  SubjectListCreateView(generics.ListCreateAPIView):
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
     filter_backends = [SearchFilter]
@@ -75,7 +75,7 @@ class SubjectRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['name']
 
-class TeacherListCreateView(generics.CreateAPIView):
+class TeacherListCreateView(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
     filter_backends = [SearchFilter]
@@ -88,7 +88,7 @@ class TeacherRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     search_fields = ['name', 'designation']
 
 
-class MessageListCreateView(generics.CreateAPIView):
+class MessageListCreateView(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
@@ -96,7 +96,7 @@ class MessageRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
 
-class ContactListCreateView(generics.CreateAPIView):
+class ContactListCreateView(generics.ListCreateAPIView):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     filter_backends = [SearchFilter]
@@ -108,7 +108,7 @@ class ContactRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['name', 'email', 'phone_number']
 
-class ModuleListCreateView(generics.CreateAPIView):
+class ModuleListCreateView(generics.ListCreateAPIView):
     queryset = Module.objects.all()
     serializer_class = ModuleSerializer
     filter_backends = [SearchFilter]
@@ -120,7 +120,7 @@ class  ModuleRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['name']
 
-class LessonListCreateView(generics.CreateAPIView):
+class LessonListCreateView(generics.ListCreateAPIView):
     queryset = Lesson.objects.all()
     serializer_class = LessonSerializer
 
@@ -189,22 +189,22 @@ def log_out(request):
     return Response({'success':True})
 
 
-@api_view(['POST'])  
+@api_view(['POST'])
 def register(request):
     try:
-       
+
         username = request.data.get('username')
         password = request.data.get('password')
-        
-  
+
+
         user = User.objects.create(username=username,
                                     password=password)
         token = Token.objects.create(user=user)
-      
+
         context = {
             'success': True,
             'username': user.username,
-            'password': password, 
+            'password': password,
             'id': user.id,
             'token' : token.key
         }
@@ -212,7 +212,7 @@ def register(request):
 
         context = {
             'success': False,
-            'error': str(e), 
+            'error': str(e),
         }
 
     return Response(context)

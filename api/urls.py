@@ -28,7 +28,7 @@ urlpatterns = [
     path('course-types/<int:pk>/', CourseTypeRetrieveUpdateDestroyView.as_view(), name='course-type-detail'),
 
     # Course URLs
-    path('courses/', CourseListCreateView.as_view(), name='course-list-create'),
+    path('curescreat/',  CourseListCreateView.as_view(), name='course-list-create'),
     path('courses/<int:pk>/', CourseRetrieveUpdateDestroyView.as_view(), name='course-detail'),
 
     # News URLs
@@ -63,6 +63,6 @@ urlpatterns = [
     path('logout/', log_out, name='logout'),
     path('register/', register, name='register'),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),  # Swagger UI
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'), 
-  
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
 ]
