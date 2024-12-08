@@ -55,9 +55,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Cors middleware to be added
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Frontend domeni ruxsat etildi
-]
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'maktab.urls'
 
