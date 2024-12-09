@@ -97,7 +97,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 # Message Serializer
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Message
+        model = Thoughts
         fields = ['id', 'first_name', 'last_name', 'email', 'phone', 'message']
 
 

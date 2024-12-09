@@ -92,11 +92,11 @@ class TeacherRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
 
 
 class MessageListCreateView(generics.ListCreateAPIView):
-    queryset = Message.objects.all()
+    queryset = Thoughts.objects.all()
     serializer_class = MessageSerializer
 
 class MessageRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Message.objects.all()
+    queryset = Thoughts.objects.all()
     serializer_class = MessageSerializer
 
 class ContactListCreateView(generics.ListCreateAPIView):

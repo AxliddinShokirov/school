@@ -96,7 +96,7 @@ class Teacher(models.Model):
         return f"{self.first_name} {self.last_name} ({self.subject.name if self.subject else 'No Subject'})"
     
 
-class Message(models.Model):
+class Thoughts(models.Model):
     first_name = models.CharField(max_length=100)  # Foydalanuvchi ismi
     last_name = models.CharField(max_length=100, blank=True, null=True)  # Foydalanuvchi familiyasi (ixtiyoriy)
     email = models.EmailField()  # Foydalanuvchi emaili

@@ -46,8 +46,8 @@ urlpatterns = [
     path('teachers/<int:pk>/', TeacherRetrieveUpdateDestroyView.as_view(), name='teacher-detail'),
 
     # Message URLs
-    path('messages/', MessageListCreateView.as_view(), name='message-list-create'),
-    path('messages/<int:pk>/', MessageRetrieveUpdateDestroyView.as_view(), name='message-detail'),
+    path('thoughts/', MessageListCreateView.as_view(), name='message-list-create'),
+    path('thoughts/<int:pk>/', MessageRetrieveUpdateDestroyView.as_view(), name='message-detail'),
 
     # Contact URLs
     path('contacts/', ContactListCreateView.as_view(), name='contact-list-create'),
