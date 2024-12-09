@@ -17,4 +17,5 @@ admin.site.register(CourseType)
 admin.site.register(Module)
 admin.site.register(Lesson)
 admin.site.register(Dimm)
+admin.site.register(EducationStatistics)
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 
@@ -116,3 +117,19 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} ({self.email})"
+
+
+class EducationStatistics(models.Model):
+    students_graduated = models.IntegerField()
+    courses_completed = models.IntegerField()
+    graduates_count = models.IntegerField()
+
+    def clean(self):
+        if self.graduates_count > self.students_graduated:
+            raise ValidationError("Graduates count cannot be greater than students graduated.")
+        super().clean()
+
+    def __str__(self):
+        return (f"Talabalar: {self.students_graduated}\n"
+                f"Tugatildi Kurslar: {self.courses_completed}\n"
+                f"Bitiruvchilar: {self.graduates_count}")

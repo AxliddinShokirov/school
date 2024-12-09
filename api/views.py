@@ -1,3 +1,6 @@
+
+from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
@@ -130,6 +133,30 @@ class LessonRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     filter_backends = [SearchFilter]
 
     search_fields = ['title', 'description']
+
+
+class EducationStatisticsRetrieveUpdateDestroyView(generics.ListCreateAPIView ,generics.RetrieveUpdateDestroyAPIView):
+    queryset = EducationStatistics.objects.all()
+    serializer_class = EducationStatisticsSerializer
+
+
+class CourseTypeWithCoursesView(APIView):
+    def get(self, request, course_type_id):
+        try:
+            course_type = CourseType.objects.get(id=course_type_id)
+            courses = Course.objects.filter(course_type_id=course_type_id)
+            course_type_data = CourseTypeSerializer(course_type).data
+            courses_data = CourseSerializer(courses, many=True).data
+
+            # Frontend uchun qulay formatda ma'lumotlarni birlashtiramiz
+            response_data = {
+                "course_type": course_type_data,
+                "courses": courses_data
+            }
+            return Response(response_data, status=status.HTTP_200_OK)
+        except CourseType.DoesNotExist:
+            return Response({"error": "CourseType not found"}, status=status.HTTP_404_NOT_FOUND)
+
 
 @api_view(['POST'])
 def log_in(request):

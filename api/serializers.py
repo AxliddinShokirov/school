@@ -117,4 +117,12 @@ class NewsSerializer(serializers.ModelSerializer):
 # Subject Serializer
 
 
-
+class EducationStatisticsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EducationStatistics
+        fields = ['id', 'students_graduated', 'courses_completed', 'graduates_count']
+    
+    def validate(self, data):
+        if data['graduates_count'] > data['students_graduated']:
+            raise serializers.ValidationError("Graduates count cannot be greater than students graduated.")
+        return data

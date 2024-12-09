@@ -30,6 +30,8 @@ urlpatterns = [
     # Course URLs
     path('curescreat/',  CourseListCreateView.as_view(), name='course-list-create'),
     path('courses/<int:pk>/', CourseRetrieveUpdateDestroyView.as_view(), name='course-detail'),
+    path('course-type/<int:course_type_id>/courses/', CourseTypeWithCoursesView.as_view(), name='course-type-with-courses'),
+
 
     # News URLs
     path('news/', NewsListCreateView.as_view(), name='news-list-create'),
@@ -57,6 +59,10 @@ urlpatterns = [
     # Lesson endpoints
     path('lessons/', LessonListCreateView.as_view(), name='lesson-list-create'),
     path('lessons/<int:pk>/', LessonRetrieveUpdateDeleteView.as_view(), name='lesson-detail'),
+    path('education-statistics/', EducationStatisticsRetrieveUpdateDestroyView.as_view(), name='education-statistics-list'),
+   
+    path('education-statistics/<int:pk>/', EducationStatisticsRetrieveUpdateDestroyView.as_view(), name='education-statistics-detail'),
+
 
     # Authentication URLs
     path('login/', log_in, name='login'),
