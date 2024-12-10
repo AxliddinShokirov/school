@@ -22,6 +22,18 @@ from main.models import *
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.filters import SearchFilter
 
+
+class EmailSubscriptionListview(generics.ListCreateAPIView):
+    queryset = EmailSubscription.objects.all()
+    serializer_class = EmailSubscriptionSerializer
+
+class EmailSubscriptionRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = EmailSubscription.objects.all()
+    serializer_class = EmailSubscriptionSerializer
+    
+ 
+    
+
 class BannerListCreateView( generics.ListCreateAPIView):
     queryset = Banner.objects.all()
     serializer_class = BannerSerializer
@@ -44,6 +56,17 @@ class CourseListCreateView(generics.ListCreateAPIView):
     serializer_class = CourseSerializer
     filter_backends = [SearchFilter]
     search_fields = ['title', 'description']
+
+class CourseDetailListCreateView(generics.ListCreateAPIView):
+    queryset = CourseDetail.objects.all()
+    serializer_class = CourseDetailSerializer
+
+class CourseDetailRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CourseDetail.objects.all()
+    serializer_class = CourseDetailSerializer
+
+
+
 
 class CourseRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.objects.all()

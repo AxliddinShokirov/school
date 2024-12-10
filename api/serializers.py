@@ -126,3 +126,17 @@ class EducationStatisticsSerializer(serializers.ModelSerializer):
         if data['graduates_count'] > data['students_graduated']:
             raise serializers.ValidationError("Graduates count cannot be greater than students graduated.")
         return data
+
+
+
+class CourseDetailSerializer(serializers.ModelSerializer):
+    course = CourseSerializer() 
+    class Meta:
+        model = CourseDetail
+        fields = '__all__'      
+
+class EmailSubscriptionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmailSubscription   
+        fields = '__all__'
+        

@@ -44,7 +44,23 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+
+class CourseDetail(models.Model):
+    course = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
+    duration = models.DurationField()  # Vaxtni ko'rsatish uchun
+    video_link = models.URLField()  # Kursning video linki
+    title = models.TextField()
+    video_link_url = models.URLField()
+    homework_type = models.CharField(max_length=50, choices=[('description', 'Description'), ('link', 'Link'), ('list', 'List')])
+    homework_content = models.TextField()
     
+    def __str__(self):
+        return self.course.title + " - " + self.title
+
+
+
+
+
 class Module(models.Model):
     course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name='modules')
     title = models.CharField(max_length=200)
@@ -133,3 +149,11 @@ class EducationStatistics(models.Model):
         return (f"Talabalar: {self.students_graduated}\n"
                 f"Tugatildi Kurslar: {self.courses_completed}\n"
                 f"Bitiruvchilar: {self.graduates_count}")
+    
+    
+class EmailSubscription(models.Model):
+    email = models.EmailField(unique=True)  # Yalnız bir marta kiritilgan emailni saqlash
+    created_at = models.DateTimeField(auto_now_add=True)  # Yaratilgan vaqt
+
+    def __str__(self):
+        return self.email

@@ -18,4 +18,6 @@ admin.site.register(Module)
 admin.site.register(Lesson)
 admin.site.register(Dimm)
 admin.site.register(EducationStatistics)
+admin.site.register(CourseDetail)
+admin.site.register(EmailSubscription)
 

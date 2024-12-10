@@ -27,6 +27,10 @@ urlpatterns = [
     path('course-types/', CourseTypeListCreateView.as_view(), name='course-type-list-create'),
     path('course-types/<int:pk>/', CourseTypeRetrieveUpdateDestroyView.as_view(), name='course-type-detail'),
 
+    path('course-details/',CourseDetailListCreateView.as_view(), name='course-detail-list-create'),
+    path('course-details/<int:pk>/', CourseDetailRetrieveUpdateDestroyView.as_view(), name='course-detail-retrieve-update-destroy'),
+
+
     # Course URLs
     path('curescreat/',  CourseListCreateView.as_view(), name='course-list-create'),
     path('courses/<int:pk>/', CourseRetrieveUpdateDestroyView.as_view(), name='course-detail'),
@@ -62,6 +66,9 @@ urlpatterns = [
     path('education-statistics/', EducationStatisticsRetrieveUpdateDestroyView.as_view(), name='education-statistics-list'),
    
     path('education-statistics/<int:pk>/', EducationStatisticsRetrieveUpdateDestroyView.as_view(), name='education-statistics-detail'),
+
+    path('EmailSubscription/', EmailSubscriptionListview.as_view(), name='email-list'),
+    path('emailSubscription/<int:pk>/', EmailSubscriptionRetrieveUpdateDestroyView.as_view(), name='email-detail'),
 
 
     # Authentication URLs
