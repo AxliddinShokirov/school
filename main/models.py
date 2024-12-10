@@ -47,16 +47,15 @@ class Course(models.Model):
 
 class CourseDetail(models.Model):
     course = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
-    duration = models.DurationField()  # Vaxtni ko'rsatish uchun
-    video_link = models.URLField()  # Kursning video linki
-    title = models.TextField()
-    video_link_url = models.URLField()
-    homework_type = models.CharField(max_length=50, choices=[('description', 'Description'), ('link', 'Link'), ('list', 'List')])
-    homework_content = models.TextField()
+    description = models.TextField()
+    video_link = models.URLField()
+    izox = models.ForeignKey(CourseType, on_delete=models.CASCADE)
     
-    def __str__(self):
-        return self.course.title + " - " + self.title
 
+
+
+
+ 
 
 
 

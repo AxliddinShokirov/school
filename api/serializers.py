@@ -131,6 +131,7 @@ class EducationStatisticsSerializer(serializers.ModelSerializer):
 
 class CourseDetailSerializer(serializers.ModelSerializer):
     course = CourseSerializer() 
+    curse_type = CourseTypeSerializer()
     class Meta:
         model = CourseDetail
         fields = '__all__'      
