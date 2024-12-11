@@ -176,6 +176,20 @@ class CourseTypeWithCoursesView(APIView):
             return Response(response_data, status=status.HTTP_200_OK)
         except CourseType.DoesNotExist:
             return Response({"error": "CourseType not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+
+class CousreDetaillListCreateView(generics.ListCreateAPIView ):
+    queryset = CourseDetaill.objects.all()
+    serializer_class = CourseDetailsSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['course_id']
+
+    # POST requestni boshqa CourseDetaill objesi yaratish uchun
+class CousreDetaillRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = CourseDetaill.objects.all()
+    serializer_class = CourseDetailsSerializer
+
+
 
 
 @api_view(['POST'])

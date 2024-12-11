@@ -136,5 +136,11 @@ class EmailSubscriptionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CourseDetailsSerializer(serializers.ModelSerializer):
+    course = CourseSerializer()# Nested serializer for course type
+    class Meta:
+        model = CourseDetaill
+        fields = '__all__'
+        
 
 

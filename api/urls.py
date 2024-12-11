@@ -44,6 +44,10 @@ urlpatterns = [
     path('subjects/', SubjectListCreateView.as_view(), name='subject-list-create'),
     path('subjects/<int:pk>/', SubjectRetrieveUpdateDestroyView.as_view(), name='subject-detail'),
 
+
+    path('coursesDetails/', CousreDetaillListCreateView.as_view(), name='course-deatil'),
+    path('coursesDetails/<int:pk>/', CousreDetaillRetrieveUpdateDestroyView.as_view(), name='course-detail-detail'),
+
     # Teacher URLs
     path('teachers/', TeacherListCreateView.as_view(), name='teacher-list-create'),
     path('teachers/<int:pk>/', TeacherRetrieveUpdateDestroyView.as_view(), name='teacher-detail'),
