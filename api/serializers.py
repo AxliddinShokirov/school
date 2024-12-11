@@ -128,16 +128,13 @@ class EducationStatisticsSerializer(serializers.ModelSerializer):
         return data
 
 
-
-class CourseDetailSerializer(serializers.ModelSerializer):
-    course = CourseSerializer() 
-    curse_type = CourseTypeSerializer()
-    class Meta:
-        model = CourseDetail
-        fields = '__all__'      
+    
 
 class EmailSubscriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = EmailSubscription   
         fields = '__all__'
-        
+
+
+
+

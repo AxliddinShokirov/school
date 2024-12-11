@@ -45,18 +45,6 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
-class CourseDetail(models.Model):
-    course = models.OneToOneField(Course, on_delete=models.CASCADE, primary_key=True)
-    description = models.TextField()
-    video_link = models.URLField()
-    izox = models.ForeignKey(CourseType, on_delete=models.CASCADE)
-    
-
-
-
-
- 
-
 
 
 
@@ -103,7 +91,7 @@ class Subject(models.Model):
 class Teacher(models.Model):
     first_name = models.CharField(max_length=100)  # O'qituvchi ismi
     last_name = models.CharField(max_length=100)  # O'qituvchi familiyasi
-    subject = models.ForeignKey(Subject, related_name='teachers', on_delete=models.SET_NULL, null=True, blank=True)  # O'qituvchining fani (bog'lash)
+    # subject = models.ForeignKey(Subject, related_name='teachers', on_delete=models.SET_NULL, null=True, blank=True)  # O'qituvchining fani (bog'lash)
     bio = models.TextField(blank=True, null=True)  # O'qituvchi haqida ma'lumot
     photo = models.ImageField(upload_to='teacher_photos/', blank=True, null=True)  # O'qituvchi rasmi
 
@@ -156,3 +144,17 @@ class EmailSubscription(models.Model):
 
     def __str__(self):
         return self.email
+
+
+
+class CourseDetaill(models.Model):
+     cours_name = models.ForeignKey(Course , related_name= 'cours', on_delete=models.SET_NULL, null=True, blank=True )
+     description = models.TextField( blank=True, null=True)  # Tavsif (ixtiyoriy)
+     video = models.URLField()
+     created_at = models.DateTimeField(auto_now_add=True)  # Yaratilgan vaqt
+     updated_at = models.DateTimeField(auto_now=True)
+
+     def __str__(self):
+        return self.cours_name.title
+         
+

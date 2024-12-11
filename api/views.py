@@ -57,13 +57,7 @@ class CourseListCreateView(generics.ListCreateAPIView):
     filter_backends = [SearchFilter]
     search_fields = ['title', 'description']
 
-class CourseDetailListCreateView(generics.ListCreateAPIView):
-    queryset = CourseDetail.objects.all()
-    serializer_class = CourseDetailSerializer
 
-class CourseDetailRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = CourseDetail.objects.all()
-    serializer_class = CourseDetailSerializer
 
 
 
@@ -161,6 +155,9 @@ class LessonRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
 class EducationStatisticsRetrieveUpdateDestroyView(generics.ListCreateAPIView ,generics.RetrieveUpdateDestroyAPIView):
     queryset = EducationStatistics.objects.all()
     serializer_class = EducationStatisticsSerializer
+
+
+
 
 
 class CourseTypeWithCoursesView(APIView):
